@@ -6,6 +6,7 @@
 #define GBA_SPRITE_ENGINE_START_SCENE_H
 
 #include <libgba-sprite-engine/scene.h>
+#include "gbmap.h"
 
 class StartScene : public Scene {
 private:

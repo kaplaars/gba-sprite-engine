@@ -6,6 +6,8 @@ add_executable(${PROJECT_NAME}.elf
         StartScene.cpp
         gbmap.h
         karakter.h
+        Menu.cpp
+        Menu.h
         )
 
 target_link_libraries(${PROJECT_NAME}.elf gba-sprite-engine)

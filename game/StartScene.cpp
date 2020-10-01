@@ -4,10 +4,8 @@
 #include <libgba-sprite-engine/gba_engine.h>
 
 #include "StartScene.h"
-
+#include "Menu.h"
 #include "karakter.h"
-
-#include "gbmap.h"
 
 StartScene::StartScene(const std::shared_ptr<GBAEngine> &engine) : Scene(engine){}
 
@@ -48,5 +46,7 @@ void StartScene::load() {
 }
 
 void StartScene::tick(u16 keys) {
-
+    if(keys & KEY_START) {
+        engine->setScene(new Menu(engine));
+    }
 }
