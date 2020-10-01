@@ -8,6 +8,8 @@ add_executable(${PROJECT_NAME}.elf
         karakter.h
         Menu.cpp
         Menu.h
+        Highscore.cpp
+        Highscore.h
         )
 
 target_link_libraries(${PROJECT_NAME}.elf gba-sprite-engine)

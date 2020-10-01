@@ -6,6 +6,7 @@
 
 #include "StartScene.h"
 #include "Menu.h"
+#include "Highscore.h"
 #include "karakter.h"
 
 Menu::Menu(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
@@ -41,7 +42,7 @@ void Menu::tick(u16 keys) {
         engine->setScene(new StartScene(engine));
     } else if (keys & KEY_R) {
         // go to highscore view
-        engine->setScene(new StartScene(engine));
+        engine->setScene(new Highscore(engine));
     }
 
 
