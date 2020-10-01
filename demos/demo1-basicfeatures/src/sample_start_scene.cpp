@@ -14,15 +14,15 @@
 #include "ff.h"
 #include "sample_sound.h"
 
-std::vector<Background *> SampleStartScene::backgrounds() {
+std::vector<Background *> StartScene::backgrounds() {
     return {};
 }
 
-std::vector<Sprite *> SampleStartScene::sprites() {
+std::vector<Sprite *> StartScene::sprites() {
     return {  animation.get(), finalFantasyGuy.get() };
 }
 
-void SampleStartScene::load() {
+void StartScene::load() {
     foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager());
 
@@ -48,7 +48,7 @@ void SampleStartScene::load() {
     engine->enqueueMusic(zelda_music_16K_mono, zelda_music_16K_mono_bytes);
 }
 
-void SampleStartScene::tick(u16 keys) {
+void StartScene::tick(u16 keys) {
     TextStream::instance().setText(engine->getTimer()->to_string(), 18, 1);
 
     if(pressingAorB && !((keys & KEY_A) || (keys & KEY_B))) {
