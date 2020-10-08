@@ -27,6 +27,10 @@ void song1::tick(u16 keys) {
     if (keys & KEY_SELECT) {
         engine->setScene(new StartScene(engine));
     }
+
+    TextStream::instance().setText("Dance dance revolution" , 1, 4);
+    TextStream::instance().setText("Are you ready" , 2, 8);
+    TextStream::instance().setText("Press start" , 17, 9);
 }
 
 void song1::load() {
