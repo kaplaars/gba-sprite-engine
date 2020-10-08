@@ -10,6 +10,11 @@ add_executable(${PROJECT_NAME}.elf
         Menu.h
         Highscore.cpp
         Highscore.h
+        SongSelect.cpp
+        SongSelect.h
+        song1.cpp
+        song1.h
+        danceroom1.h
         )
 
 target_link_libraries(${PROJECT_NAME}.elf gba-sprite-engine)

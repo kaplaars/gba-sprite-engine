@@ -5,40 +5,51 @@
 #include <libgba-sprite-engine/gba_engine.h>
 
 #include "StartScene.h"
-#include "Highscore.h"
+#include "SongSelect.h"
 #include "Menu.h"
 #include "karakter.h"
+#include "song1.h"
 
-Highscore::Highscore(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
+SongSelect::SongSelect(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
-std::vector<Sprite *> Highscore::sprites() {
+std::vector<Sprite *> SongSelect::sprites() {
     return {
             animation.get()
     };
 }
 
-std::vector<Background *> Highscore::backgrounds() {
+std::vector<Background *> SongSelect::backgrounds() {
     return {
             bg.get()
     };
 }
 
-void Highscore::tick(u16 keys) {
+void SongSelect::tick(u16 keys) {
     //ga terug naar startscene
     if (keys & KEY_L) {
         engine->setScene(new Menu(engine));
     }
 
-    TextStream::instance().setText("Song 1:", 1, 11);
-    //TextStream::instance().setText(score1, 2, 4);
-    TextStream::instance().setText("Song 2:", 5, 11);
-    //TextStream::instance().setText(score2, 6, 6);
-    TextStream::instance().setText("Song 3:", 9, 11);
-    //TextStream::instance().setText(score3, 10, 6);
+    TextStream::instance().setText("Song 1: xxsong namexx", 1, 5);
+    TextStream::instance().setText(" Press UP", 2, 9);
+    if(keys&KEY_UP){
+        engine->setScene(new song1(engine));
+    }
 
+    TextStream::instance().setText("Song 2: xxsong namexx", 5, 5);
+    TextStream::instance().setText(" Press LEFT", 6, 9);
+    if(keys&KEY_LEFT){
+        //engine->setScene(new Song2(engine));
+    }
+
+    TextStream::instance().setText("Song 3: xxsong namexx", 9, 5);
+    TextStream::instance().setText("Press RIGHT", 10, 9);
+    if(keys&KEY_RIGHT){
+        //engine->setScene(new Song3(engine));
+    }
 }
 
-void Highscore::load() {
+void SongSelect::load() {
     foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(gbmapPal, sizeof(gbmapPal)));
 

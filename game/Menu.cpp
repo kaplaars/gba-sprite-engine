@@ -8,6 +8,7 @@
 #include "Menu.h"
 #include "Highscore.h"
 #include "karakter.h"
+#include "SongSelect.h"
 
 Menu::Menu(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
@@ -23,7 +24,7 @@ std::vector<Background *> Menu::backgrounds() {
 }
 
 void Menu::tick(u16 keys) {
-    //ga terug naar startscene
+   //ga terug naar startscene
     if (keys & KEY_SELECT) {
         engine->setScene(new StartScene(engine));
     }
@@ -39,7 +40,7 @@ void Menu::tick(u16 keys) {
         engine->setScene(new StartScene(engine));
     } else if (keys & KEY_B) {
         // go to song select
-        engine->setScene(new StartScene(engine));
+        engine->setScene(new SongSelect(engine));
     } else if (keys & KEY_R) {
         // go to highscore view
         engine->setScene(new Highscore(engine));
