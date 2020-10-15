@@ -50,7 +50,7 @@ void Highscore::load() {
     SpriteBuilder<Sprite> builder;
 
     animation = builder
-            .withData(karakterTiles, sizeof(karakterTiles))
+            .withData(safmanTiles, sizeof(safmanTiles))
             .withSize(SIZE_32_32)
             .withAnimated(3, 20)
             .withLocation((GBA_SCREEN_WIDTH/2)-16, GBA_SCREEN_HEIGHT-64)

@@ -23,28 +23,20 @@ std::vector<Background *> song1::backgrounds() {
 }
 
 void song1::tick(u16 keys) {
-    //ga terug naar startscene
-    if (keys & KEY_SELECT) {
-        engine->setScene(new StartScene(engine));
-    }
 
-    TextStream::instance().setText("Dance dance revolution" , 1, 4);
-    TextStream::instance().setText("Are you ready" , 2, 8);
-    TextStream::instance().setText("Press start" , 17, 9);
 }
 
 void song1::load() {
+
+    engine.get()->disableText();
+
+    //REG_DISPCNT
+
     foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager( danceroom1Pal, sizeof( danceroom1Pal)));
 
-    engine.get()->enableText();
-
-
-
     bg = std::unique_ptr<Background>(new Background(1,  danceroom1Tiles, sizeof( danceroom1Tiles), danceroom1Map, sizeof( danceroom1Map)));
     bg.get()->useMapScreenBlock(16);
-
-    TextStream::instance().clear();
 
     SpriteBuilder<Sprite> builder;
 
