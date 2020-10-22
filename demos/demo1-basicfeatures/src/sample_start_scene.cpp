@@ -50,7 +50,7 @@ void StartScene::load() {
 
 void StartScene::tick(u16 keys) {
     TextStream::instance().setText(engine->getTimer()->to_string(), 18, 1);
-
+    animation->animateToFrame(0);
     if(pressingAorB && !((keys & KEY_A) || (keys & KEY_B))) {
         engine->getTimer()->toggle();
         pressingAorB = false;
