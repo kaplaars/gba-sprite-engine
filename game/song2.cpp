@@ -4,38 +4,39 @@
 #include <libgba-sprite-engine/gba/tonc_memdef.h>
 #include <libgba-sprite-engine/gba_engine.h>
 
-#include "karakter.h"
-#include "SongSelect.h"
-#include "song1.h"
-#include "StartScene.h"
 #include "danceroom1.h"
+#include "karakter.h"
+#include "song2.h"
+#include "SongSelect.h"
 
-song1::song1(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
+song2::song2(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
-std::vector<Sprite *> song1::sprites() {
-    return {animation.get()};
+std::vector<Sprite *> song2::sprites() {
+    return {
+            animation.get()
+    };
 }
 
-std::vector<Background *> song1::backgrounds() {
+std::vector<Background *> song2::backgrounds() {
     return {
             bg.get()
     };
 }
 
-void song1::tick(u16 keys) {
+void song2::tick(u16 keys) {
 //ga terug naar startscene
     if (keys & KEY_R) {
         engine->setScene(new SongSelect(engine));
     }
 }
 
-void song1::load() {
+void song2::load() {
     foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
-    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(gbmapPal, sizeof(gbmapPal)));
+    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(danceroom1Pal, sizeof(danceroom1Pal)));
 
     engine.get()->enableText();
 
-    bg = std::unique_ptr<Background>(new Background(1, gbmapTiles, sizeof(gbmapTiles), gbmapMap, sizeof(gbmapMap)));
+    bg = std::unique_ptr<Background>(new Background(1, danceroom1Tiles, sizeof(danceroom1Tiles), danceroom1Map, sizeof(danceroom1Map)));
     bg.get()->useMapScreenBlock(16);
 
     SpriteBuilder<Sprite> builder;

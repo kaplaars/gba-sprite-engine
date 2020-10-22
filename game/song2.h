@@ -3,13 +3,12 @@
 #include <libgba-sprite-engine/scene.h>
 #include <libgba-sprite-engine/background/background.h>
 
-
-class song1 : public Scene {
+class song2: public Scene {
 private:
     std::unique_ptr<Background> bg;
     std::unique_ptr<Sprite> animation;
 public:
-    song1(const std::shared_ptr<GBAEngine> &engine);
+    song2(const std::shared_ptr<GBAEngine> &engine);
 
     std::vector<Sprite *> sprites() override;
     std::vector<Background *> backgrounds() override;
