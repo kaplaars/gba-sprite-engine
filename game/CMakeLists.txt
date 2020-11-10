@@ -17,6 +17,9 @@ add_executable(${PROJECT_NAME}.elf
         danceroom1.h
         song2.cpp
         song2.h
+        song3.cpp
+        song3.h
+        music1.h
         )
 
 target_link_libraries(${PROJECT_NAME}.elf gba-sprite-engine)

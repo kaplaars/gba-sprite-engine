@@ -33,7 +33,7 @@ void Menu::tick(u16 keys) {
     TextStream::instance().setText("to select a character", 5, 4);
     TextStream::instance().setText("Press B", 8, 11);
     TextStream::instance().setText("to select a song", 9, 6);
-    TextStream::instance().setText("Press R", 12, 11);
+    TextStream::instance().setText("Press L", 12, 11);
     TextStream::instance().setText("to see highscores", 13, 6);
     if (keys & KEY_A) {
         // go to character select
@@ -41,7 +41,7 @@ void Menu::tick(u16 keys) {
     } else if (keys & KEY_B) {
         // go to song select
         engine->setScene(new SongSelect(engine));
-    } else if (keys & KEY_R) {
+    } else if (keys & KEY_L) {
         // go to highscore view
         engine->setScene(new Highscore(engine));
     }

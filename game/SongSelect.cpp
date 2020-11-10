@@ -10,6 +10,7 @@
 #include "karakter.h"
 #include "song1.h"
 #include "song2.h"
+#include "song3.h"
 
 SongSelect::SongSelect(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
@@ -31,11 +32,11 @@ void SongSelect::tick(u16 keys) {
         engine->setScene(new Menu(engine));
     }
 
-    TextStream::instance().setText("Song 1: xxsong namexx", 1, 5);
+    TextStream::instance().setText("Song 1: Death of the C++", 1, 5);
     TextStream::instance().setText(" Press UP", 2, 9);
-    TextStream::instance().setText("Song 2: xxsong namexx", 5, 5);
+    TextStream::instance().setText("Song 2: Caremella dance", 5, 5);
     TextStream::instance().setText(" Press LEFT", 6, 9);
-    TextStream::instance().setText("Song 3: xxsong namexx", 9, 5);
+    TextStream::instance().setText("Song 3: ADHD on cocain", 9, 5);
     TextStream::instance().setText("Press RIGHT", 10, 9);
 
     if(keys&KEY_UP) {
@@ -43,7 +44,7 @@ void SongSelect::tick(u16 keys) {
     }else if(keys&KEY_LEFT){
         engine->setScene(new song2(engine));
     }else if(keys&KEY_RIGHT){
-        //engine->setScene(new Song3(engine));
+        engine->setScene(new song3(engine));
     }
 }
 
