@@ -86,8 +86,7 @@ void song1::load() {
     engine.get()->enableText();
     engine->getTimer()->reset();
     engine->getTimer()->start();
-    //engine->enqueueMusic(music1,music1_bytes);
-    engine->enqueueMusic(music1, music1_bytes, 16000);
+    engine->enqueueMusic(music1, music1_bytes, speed);
 
 
     bg = std::unique_ptr<Background>(new Background(1, danceroom1Tiles, sizeof(danceroom1Tiles), danceroom1Map, sizeof(danceroom1Map)));

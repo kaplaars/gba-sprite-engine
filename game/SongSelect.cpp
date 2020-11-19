@@ -40,6 +40,7 @@ void SongSelect::tick(u16 keys) {
     TextStream::instance().setText("Press RIGHT", 10, 9);
 
     if(keys&KEY_UP) {
+        speed = 16000;
         engine->setScene(new song1(engine));
     }else if(keys&KEY_LEFT){
         engine->setScene(new song2(engine));

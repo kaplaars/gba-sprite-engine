@@ -16,4 +16,6 @@ public:
     void load() override;
 
     void tick(u16 keys) override;
+
+    int speed;
 };
