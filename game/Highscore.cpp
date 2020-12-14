@@ -8,6 +8,8 @@
 #include "Highscore.h"
 #include "Menu.h"
 #include "karakter.h"
+#include "data.h"
+extern data data1;
 
 Highscore::Highscore(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
@@ -25,16 +27,16 @@ std::vector<Background *> Highscore::backgrounds() {
 
 void Highscore::tick(u16 keys) {
     //ga terug naar startscene
-    if (keys & KEY_L) {
+    if (keys & KEY_R) {
         engine->setScene(new Menu(engine));
     }
 
     TextStream::instance().setText("Song 1:", 1, 11);
-    //TextStream::instance().setText(score1, 2, 4);
+    TextStream::instance().setText(std::to_string(data1.getTopScore1()), 2, 13);
     TextStream::instance().setText("Song 2:", 5, 11);
-    //TextStream::instance().setText(score2, 6, 6);
+    TextStream::instance().setText(std::to_string(data1.getTopScore2()), 6, 13);
     TextStream::instance().setText("Song 3:", 9, 11);
-    //TextStream::instance().setText(score3, 10, 6);
+    TextStream::instance().setText(std::to_string(data1.getTopScore3()), 10, 13);
 
 }
 

@@ -9,8 +9,9 @@
 #include "Menu.h"
 #include "karakter.h"
 #include "song1.h"
-#include "song2.h"
-#include "song3.h"
+#include "data.h"
+
+extern data data1;
 
 SongSelect::SongSelect(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
@@ -27,8 +28,8 @@ std::vector<Background *> SongSelect::backgrounds() {
 }
 
 void SongSelect::tick(u16 keys) {
-    //ga terug naar startscene
-    if (keys & KEY_L) {
+   //ga terug naar startscene
+    if (keys & KEY_R) {
         engine->setScene(new Menu(engine));
     }
 
@@ -39,13 +40,18 @@ void SongSelect::tick(u16 keys) {
     TextStream::instance().setText("Song 3: ADHD on cocain", 9, 5);
     TextStream::instance().setText("Press RIGHT", 10, 9);
 
-    if(keys&KEY_UP) {
-        speed = 16000;
+    if(keys & KEY_UP||keys & KEY_RIGHT||keys & KEY_LEFT) {
+        if (keys & KEY_UP) {
+            data1.setSpeed(16000);
+            data1.setFallSpeed(1);
+        } else if (keys & KEY_LEFT) {
+            data1.setSpeed(96000);
+            data1.setFallSpeed(2);
+        } else if (keys & KEY_RIGHT) {
+            data1.setSpeed(512000);
+            data1.setFallSpeed(3);
+        }
         engine->setScene(new song1(engine));
-    }else if(keys&KEY_LEFT){
-        engine->setScene(new song2(engine));
-    }else if(keys&KEY_RIGHT){
-        engine->setScene(new song3(engine));
     }
 }
 

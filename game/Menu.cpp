@@ -9,6 +9,7 @@
 #include "Highscore.h"
 #include "karakter.h"
 #include "SongSelect.h"
+#include "data.h"
 
 Menu::Menu(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
@@ -29,19 +30,14 @@ void Menu::tick(u16 keys) {
         engine->setScene(new StartScene(engine));
     }
 
-    TextStream::instance().setText("Press A ", 4, 11);
-    TextStream::instance().setText("to select a character", 5, 4);
+    TextStream::instance().setText("Press A", 4, 11);
+    TextStream::instance().setText("to select a song", 5, 6);
     TextStream::instance().setText("Press B", 8, 11);
-    TextStream::instance().setText("to select a song", 9, 6);
-    TextStream::instance().setText("Press L", 12, 11);
-    TextStream::instance().setText("to see highscores", 13, 6);
+    TextStream::instance().setText("to see highscores", 9, 6);
     if (keys & KEY_A) {
-        // go to character select
-        engine->setScene(new StartScene(engine));
-    } else if (keys & KEY_B) {
         // go to song select
         engine->setScene(new SongSelect(engine));
-    } else if (keys & KEY_L) {
+    } else if (keys & KEY_B) {
         // go to highscore view
         engine->setScene(new Highscore(engine));
     }

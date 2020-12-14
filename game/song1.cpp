@@ -10,7 +10,8 @@
 #include "danceroom1.h"
 #include "Menu.h"
 #include "music1.h"
-#include "StartScene.h"
+#include "data.h"
+extern data data1;
 
 song1::song1(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
 
@@ -33,13 +34,21 @@ void song1::tick(u16 keys) {
     if (keys & KEY_R) {
         engine->setScene(new Menu(engine));
     }
-    if((engine->getTimer()->getSecs()) >= 60){
-        engine->setScene(new StartScene(engine));
+    //topscore timer
+    if(engine->getTimer()->getMinutes()>=1){
+        if(data1.getFallSpeed()==1 && data1.getTopScore1()<score1){
+            data1.setTopScore1(score1);
+        }else if(data1.getFallSpeed()==2 && data1.getTopScore1()<score1){
+            data1.setTopScore2(score1);
+        }else if(data1.getFallSpeed()==3 && data1.getTopScore1()<score1){
+            data1.setTopScore3(score1);
+        }
+        engine->setScene(new Menu(engine));
     }
 
     TextStream::instance().setText("score:", 1, 1);
     TextStream::instance().setText(std::to_string(score1), 2, 1);
-    TextStream::instance().setText(std::to_string(60-(engine->getTimer()->getSecs())),3,1);
+    TextStream::instance().setText(std::to_string((engine->getTimer()->getSecs())),3,1);
 
     //moving and generating the buttons
     if(buttons->isOffScreen()) {
@@ -48,7 +57,7 @@ void song1::tick(u16 keys) {
         buttons->moveTo((GBA_SCREEN_WIDTH/2)-16,0);
         pressed = 0;
     }else{
-        buttons->setVelocity(0, 1);
+        buttons->setVelocity(0, data1.getFallSpeed());
     }
 
     //y pos checker
@@ -86,7 +95,7 @@ void song1::load() {
     engine.get()->enableText();
     engine->getTimer()->reset();
     engine->getTimer()->start();
-    engine->enqueueMusic(music1, music1_bytes, speed);
+    engine->enqueueMusic(music1, music1_bytes, data1.getSpeed());
 
 
     bg = std::unique_ptr<Background>(new Background(1, danceroom1Tiles, sizeof(danceroom1Tiles), danceroom1Map, sizeof(danceroom1Map)));
@@ -103,7 +112,7 @@ void song1::load() {
     animation = builder
             .withData(bokmanTiles, sizeof(bokmanTiles))
             .withSize(SIZE_32_32)
-            .withAnimated(3, 20)
+            .withAnimated(3, (16-(data1.getFallSpeed()*5)))
             .withLocation((GBA_SCREEN_WIDTH/4)-16, (GBA_SCREEN_HEIGHT/4)-16)
             .withinBounds()
             .buildPtr();
@@ -111,7 +120,7 @@ void song1::load() {
     animation2 = builder
             .withData(dancingmichmanTiles, sizeof(dancingmichmanTiles))
             .withSize(SIZE_32_32)
-            .withAnimated(3, 30)
+            .withAnimated(3, (16-(data1.getFallSpeed()*5)))
             .withLocation((GBA_SCREEN_WIDTH/4)-16, ((GBA_SCREEN_HEIGHT*3)/4)-16)
             .withinBounds()
             .buildPtr();
@@ -119,7 +128,7 @@ void song1::load() {
     animation3= builder
             .withData(nederlandmanTiles, sizeof(nederlandmanTiles))
             .withSize(SIZE_32_32)
-            .withAnimated(3, 5)
+            .withAnimated(3, (16-(data1.getFallSpeed()*5)))
             .withLocation(((GBA_SCREEN_WIDTH*3)/4)-16, (GBA_SCREEN_HEIGHT/4)-16)
             .withinBounds()
             .buildPtr();
@@ -127,7 +136,7 @@ void song1::load() {
     animation4 = builder
             .withData(j_germanTiles, sizeof(j_germanTiles))
             .withSize(SIZE_32_32)
-            .withAnimated(3, 10)
+            .withAnimated(3, (16-(data1.getFallSpeed()*5)))
             .withLocation(((GBA_SCREEN_WIDTH*3)/4)-16, ((GBA_SCREEN_HEIGHT*3)/4)-16)
             .withinBounds()
             .buildPtr();
