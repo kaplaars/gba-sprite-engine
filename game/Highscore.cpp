@@ -9,6 +9,8 @@
 #include "Menu.h"
 #include "karakter.h"
 #include "data.h"
+#include "music1.h"
+
 extern data data1;
 
 Highscore::Highscore(const std::shared_ptr<GBAEngine> &engine) : Scene(engine) {}
@@ -41,7 +43,7 @@ void Highscore::tick(u16 keys) {
 }
 
 void Highscore::load() {
-    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
+    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(SharedPal, sizeof(SharedPal)));
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(gbmapPal, sizeof(gbmapPal)));
 
     engine.get()->enableText();
@@ -50,6 +52,8 @@ void Highscore::load() {
     bg.get()->useMapScreenBlock(16);
 
     SpriteBuilder<Sprite> builder;
+
+    engine->enqueueMusic(music1, music1_bytes, 96000);
 
     animation = builder
             .withData(safmanTiles, sizeof(safmanTiles))

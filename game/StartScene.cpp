@@ -6,6 +6,7 @@
 #include "StartScene.h"
 #include "Menu.h"
 #include "karakter.h"
+#include "music1.h"
 
 StartScene::StartScene(const std::shared_ptr<GBAEngine> &engine) : Scene(engine){}
 
@@ -21,7 +22,7 @@ std::vector<Background *> StartScene::backgrounds() {
 
 void StartScene::load() {
     backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(gbmapPal, sizeof(gbmapPal)));
-    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
+    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(SharedPal, sizeof(SharedPal)));
 
     engine.get()->enableText();
 
@@ -29,6 +30,8 @@ void StartScene::load() {
     bg.get()->useMapScreenBlock(24);
 
     SpriteBuilder<Sprite> builder;
+
+    engine->enqueueMusic(music1, music1_bytes, 96000);
 
     animation = builder
             .withData(j_germanTiles, sizeof(j_germanTiles))

@@ -89,8 +89,8 @@ void song1::tick(u16 keys) {
 }
 
 void song1::load() {
-    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(sharedPal, sizeof(sharedPal)));
-    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(danceroom1Pal, sizeof(danceroom1Pal)));
+    foregroundPalette = std::unique_ptr<ForegroundPaletteManager>(new ForegroundPaletteManager(SharedPal, sizeof(SharedPal)));
+    backgroundPalette = std::unique_ptr<BackgroundPaletteManager>(new BackgroundPaletteManager(danceroomPal, sizeof(danceroomPal)));
 
     engine.get()->enableText();
     engine->getTimer()->reset();
@@ -98,7 +98,7 @@ void song1::load() {
     engine->enqueueMusic(music1, music1_bytes, data1.getSpeed());
 
 
-    bg = std::unique_ptr<Background>(new Background(1, danceroom1Tiles, sizeof(danceroom1Tiles), danceroom1Map, sizeof(danceroom1Map)));
+    bg = std::unique_ptr<Background>(new Background(1, danceroomTiles, sizeof(danceroomTiles), danceroomMap, sizeof(danceroomMap)));
     bg.get()->useMapScreenBlock(16);
 
     SpriteBuilder<Sprite> builder;
