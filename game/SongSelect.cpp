@@ -30,7 +30,7 @@ std::vector<Background *> SongSelect::backgrounds() {
 
 void SongSelect::tick(u16 keys) {
    //ga terug naar startscene
-    if (keys & KEY_R) {
+    if (keys & KEY_L) {
         engine->setScene(new Menu(engine));
     }
 
