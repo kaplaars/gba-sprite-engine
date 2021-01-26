@@ -67,7 +67,7 @@ void SongSelect::load() {
 
     SpriteBuilder<Sprite> builder;
 
-    engine->enqueueMusic(music1, music1_bytes, 96000);
+    //engine->enqueueMusic(music1, music1_bytes, 96000);//makes game crash???
 
     animation = builder
             .withData(nederlandmanTiles, sizeof(nederlandmanTiles))

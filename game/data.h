@@ -18,5 +18,6 @@ class data{
     int getTopScore2();
     void setTopScore3(int newtop);
     int getTopScore3();
+    void setEndgameScore(int newtop);
 };
 #endif //GBA_SPRITE_ENGINE_PROJECT_DATA_H

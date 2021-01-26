@@ -40,3 +40,13 @@ void data::setTopScore3(int newtop){
 int data::getTopScore3(){
     return topscore3;
 }
+
+void data::setEndgameScore(int newtop){
+    if(newtop>topscore1 && fallspeed == 1) {
+        topscore1 = newtop;
+    }else if(newtop>topscore2 && fallspeed == 2) {
+        topscore2 = newtop;
+    }else if(newtop>topscore3 && fallspeed == 3) {
+        topscore3 = newtop;
+    }
+}

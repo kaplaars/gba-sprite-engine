@@ -37,13 +37,7 @@ void song1::tick(u16 keys) {
     }
     //topscore timer
     if(engine->getTimer()->getMinutes()>=1){
-        if(data1.getFallSpeed()==1 && data1.getTopScore1()<score1){
-            data1.setTopScore1(score1);
-        }else if(data1.getFallSpeed()==2 && data1.getTopScore1()<score1){
-            data1.setTopScore2(score1);
-        }else if(data1.getFallSpeed()==3 && data1.getTopScore1()<score1){
-            data1.setTopScore3(score1);
-        }
+        data1.setEndgameScore(score1);
         engine->setScene(new Highscore(engine));
     }
 
@@ -53,8 +47,9 @@ void song1::tick(u16 keys) {
 
     //moving and generating the buttons
     if(buttons->isOffScreen()) {
-        int frame=(rand()%6)+6;
+        int frame=(rand()%6+6);
         buttons->animateToFrame(frame);
+        TextStream::instance().setText(std::to_string(frame), 4, 1);
         buttons->moveTo((GBA_SCREEN_WIDTH/2)-16,0);
         pressed = 0;
     }else{
